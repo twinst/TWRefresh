@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		833238CE1B2E6D5F00B806CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 833238CD1B2E6D5F00B806CE /* main.m */; };
+		833238D11B2E6D5F00B806CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833238D01B2E6D5F00B806CE /* AppDelegate.m */; };
+		833238D41B2E6D5F00B806CE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833238D31B2E6D5F00B806CE /* ViewController.m */; };
+		833238D71B2E6D5F00B806CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833238D51B2E6D5F00B806CE /* Main.storyboard */; };
+		833238D91B2E6D5F00B806CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833238D81B2E6D5F00B806CE /* Images.xcassets */; };
+		833238DC1B2E6D5F00B806CE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833238DA1B2E6D5F00B806CE /* LaunchScreen.xib */; };
+		833238E81B2E6D6000B806CE /* TWRefreshDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833238E71B2E6D6000B806CE /* TWRefreshDemoTests.m */; };
+		833239191B2FD4B600B806CE /* TWRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239181B2FD4B600B806CE /* TWRefreshTableViewController.m */; };
+		8332391C1B2FD4D300B806CE /* TWRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8332391B1B2FD4D300B806CE /* TWRefreshCollectionViewController.m */; };
+		8332392F1B2FF18C00B806CE /* TWRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239231B2FF18C00B806CE /* TWRefreshView.m */; };
+		833239301B2FF18C00B806CE /* UIScrollView+TWRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239251B2FF18C00B806CE /* UIScrollView+TWRefresh.m */; };
+		833239311B2FF18C00B806CE /* TWRefreshCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239291B2FF18C00B806CE /* TWRefreshCollectionView.m */; };
+		833239321B2FF18C00B806CE /* TWRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8332392B1B2FF18C00B806CE /* TWRefreshTableView.m */; };
+		833239331B2FF18C00B806CE /* TWRefreshIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8332392E1B2FF18C00B806CE /* TWRefreshIndicatorView.m */; };
+		833239361B3009A500B806CE /* TWRefreshScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239351B3009A500B806CE /* TWRefreshScrollViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		833238E21B2E6D6000B806CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 833238C01B2E6D5E00B806CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 833238C71B2E6D5F00B806CE;
+			remoteInfo = TWRefreshDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		833238C81B2E6D5F00B806CE /* TWRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		833238CC1B2E6D5F00B806CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		833238CD1B2E6D5F00B806CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		833238CF1B2E6D5F00B806CE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		833238D01B2E6D5F00B806CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		833238D21B2E6D5F00B806CE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		833238D31B2E6D5F00B806CE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		833238D61B2E6D5F00B806CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		833238D81B2E6D5F00B806CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		833238DB1B2E6D5F00B806CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		833238E11B2E6D6000B806CE /* TWRefreshDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TWRefreshDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		833238E61B2E6D6000B806CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		833238E71B2E6D6000B806CE /* TWRefreshDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWRefreshDemoTests.m; sourceTree = "<group>"; };
+		833239171B2FD4B600B806CE /* TWRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshTableViewController.h; sourceTree = "<group>"; };
+		833239181B2FD4B600B806CE /* TWRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshTableViewController.m; sourceTree = "<group>"; };
+		8332391A1B2FD4D300B806CE /* TWRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshCollectionViewController.h; sourceTree = "<group>"; };
+		8332391B1B2FD4D300B806CE /* TWRefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshCollectionViewController.m; sourceTree = "<group>"; };
+		833239211B2FF18C00B806CE /* TWRefreshIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshIndicator.h; sourceTree = "<group>"; };
+		833239221B2FF18C00B806CE /* TWRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshView.h; sourceTree = "<group>"; };
+		833239231B2FF18C00B806CE /* TWRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshView.m; sourceTree = "<group>"; };
+		833239241B2FF18C00B806CE /* UIScrollView+TWRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TWRefresh.h"; sourceTree = "<group>"; };
+		833239251B2FF18C00B806CE /* UIScrollView+TWRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TWRefresh.m"; sourceTree = "<group>"; };
+		833239271B2FF18C00B806CE /* TWRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefresh.h; sourceTree = "<group>"; };
+		833239281B2FF18C00B806CE /* TWRefreshCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshCollectionView.h; sourceTree = "<group>"; };
+		833239291B2FF18C00B806CE /* TWRefreshCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshCollectionView.m; sourceTree = "<group>"; };
+		8332392A1B2FF18C00B806CE /* TWRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshTableView.h; sourceTree = "<group>"; };
+		8332392B1B2FF18C00B806CE /* TWRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshTableView.m; sourceTree = "<group>"; };
+		8332392D1B2FF18C00B806CE /* TWRefreshIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshIndicatorView.h; sourceTree = "<group>"; };
+		8332392E1B2FF18C00B806CE /* TWRefreshIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshIndicatorView.m; sourceTree = "<group>"; };
+		833239341B3009A500B806CE /* TWRefreshScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshScrollViewController.h; sourceTree = "<group>"; };
+		833239351B3009A500B806CE /* TWRefreshScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshScrollViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		833238C51B2E6D5F00B806CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833238DE1B2E6D6000B806CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		833238BF1B2E6D5E00B806CE = {
+			isa = PBXGroup;
+			children = (
+				833238F11B2E6D8E00B806CE /* TWRefresh */,
+				833238CA1B2E6D5F00B806CE /* TWRefreshDemo */,
+				833238E41B2E6D6000B806CE /* TWRefreshDemoTests */,
+				833238C91B2E6D5F00B806CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		833238C91B2E6D5F00B806CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				833238C81B2E6D5F00B806CE /* TWRefreshDemo.app */,
+				833238E11B2E6D6000B806CE /* TWRefreshDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		833238CA1B2E6D5F00B806CE /* TWRefreshDemo */ = {
+			isa = PBXGroup;
+			children = (
+				833238CF1B2E6D5F00B806CE /* AppDelegate.h */,
+				833238D01B2E6D5F00B806CE /* AppDelegate.m */,
+				833238D21B2E6D5F00B806CE /* ViewController.h */,
+				833238D31B2E6D5F00B806CE /* ViewController.m */,
+				833239171B2FD4B600B806CE /* TWRefreshTableViewController.h */,
+				833239181B2FD4B600B806CE /* TWRefreshTableViewController.m */,
+				8332391A1B2FD4D300B806CE /* TWRefreshCollectionViewController.h */,
+				8332391B1B2FD4D300B806CE /* TWRefreshCollectionViewController.m */,
+				833239341B3009A500B806CE /* TWRefreshScrollViewController.h */,
+				833239351B3009A500B806CE /* TWRefreshScrollViewController.m */,
+				833238D51B2E6D5F00B806CE /* Main.storyboard */,
+				833238D81B2E6D5F00B806CE /* Images.xcassets */,
+				833238DA1B2E6D5F00B806CE /* LaunchScreen.xib */,
+				833238CB1B2E6D5F00B806CE /* Supporting Files */,
+			);
+			path = TWRefreshDemo;
+			sourceTree = "<group>";
+		};
+		833238CB1B2E6D5F00B806CE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				833238CC1B2E6D5F00B806CE /* Info.plist */,
+				833238CD1B2E6D5F00B806CE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		833238E41B2E6D6000B806CE /* TWRefreshDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				833238E71B2E6D6000B806CE /* TWRefreshDemoTests.m */,
+				833238E51B2E6D6000B806CE /* Supporting Files */,
+			);
+			path = TWRefreshDemoTests;
+			sourceTree = "<group>";
+		};
+		833238E51B2E6D6000B806CE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				833238E61B2E6D6000B806CE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		833238F11B2E6D8E00B806CE /* TWRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				833239201B2FF18C00B806CE /* Base */,
+				8332392C1B2FF18C00B806CE /* Indicators */,
+				833239261B2FF18C00B806CE /* Implements */,
+			);
+			path = TWRefresh;
+			sourceTree = "<group>";
+		};
+		833239201B2FF18C00B806CE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				833239211B2FF18C00B806CE /* TWRefreshIndicator.h */,
+				833239221B2FF18C00B806CE /* TWRefreshView.h */,
+				833239231B2FF18C00B806CE /* TWRefreshView.m */,
+				833239241B2FF18C00B806CE /* UIScrollView+TWRefresh.h */,
+				833239251B2FF18C00B806CE /* UIScrollView+TWRefresh.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		833239261B2FF18C00B806CE /* Implements */ = {
+			isa = PBXGroup;
+			children = (
+				833239271B2FF18C00B806CE /* TWRefresh.h */,
+				8332392A1B2FF18C00B806CE /* TWRefreshTableView.h */,
+				8332392B1B2FF18C00B806CE /* TWRefreshTableView.m */,
+				833239281B2FF18C00B806CE /* TWRefreshCollectionView.h */,
+				833239291B2FF18C00B806CE /* TWRefreshCollectionView.m */,
+			);
+			path = Implements;
+			sourceTree = "<group>";
+		};
+		8332392C1B2FF18C00B806CE /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				8332392D1B2FF18C00B806CE /* TWRefreshIndicatorView.h */,
+				8332392E1B2FF18C00B806CE /* TWRefreshIndicatorView.m */,
+			);
+			path = Indicators;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		833238C71B2E6D5F00B806CE /* TWRefreshDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 833238EB1B2E6D6000B806CE /* Build configuration list for PBXNativeTarget "TWRefreshDemo" */;
+			buildPhases = (
+				833238C41B2E6D5F00B806CE /* Sources */,
+				833238C51B2E6D5F00B806CE /* Frameworks */,
+				833238C61B2E6D5F00B806CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TWRefreshDemo;
+			productName = TWRefreshDemo;
+			productReference = 833238C81B2E6D5F00B806CE /* TWRefreshDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		833238E01B2E6D6000B806CE /* TWRefreshDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 833238EE1B2E6D6000B806CE /* Build configuration list for PBXNativeTarget "TWRefreshDemoTests" */;
+			buildPhases = (
+				833238DD1B2E6D6000B806CE /* Sources */,
+				833238DE1B2E6D6000B806CE /* Frameworks */,
+				833238DF1B2E6D6000B806CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				833238E31B2E6D6000B806CE /* PBXTargetDependency */,
+			);
+			name = TWRefreshDemoTests;
+			productName = TWRefreshDemoTests;
+			productReference = 833238E11B2E6D6000B806CE /* TWRefreshDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		833238C01B2E6D5E00B806CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = EasyBaking;
+				TargetAttributes = {
+					833238C71B2E6D5F00B806CE = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					833238E01B2E6D6000B806CE = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 833238C71B2E6D5F00B806CE;
+					};
+				};
+			};
+			buildConfigurationList = 833238C31B2E6D5E00B806CE /* Build configuration list for PBXProject "TWRefreshDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 833238BF1B2E6D5E00B806CE;
+			productRefGroup = 833238C91B2E6D5F00B806CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				833238C71B2E6D5F00B806CE /* TWRefreshDemo */,
+				833238E01B2E6D6000B806CE /* TWRefreshDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		833238C61B2E6D5F00B806CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833238D71B2E6D5F00B806CE /* Main.storyboard in Resources */,
+				833238DC1B2E6D5F00B806CE /* LaunchScreen.xib in Resources */,
+				833238D91B2E6D5F00B806CE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833238DF1B2E6D6000B806CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		833238C41B2E6D5F00B806CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833239301B2FF18C00B806CE /* UIScrollView+TWRefresh.m in Sources */,
+				833239191B2FD4B600B806CE /* TWRefreshTableViewController.m in Sources */,
+				8332392F1B2FF18C00B806CE /* TWRefreshView.m in Sources */,
+				833238D41B2E6D5F00B806CE /* ViewController.m in Sources */,
+				833239321B2FF18C00B806CE /* TWRefreshTableView.m in Sources */,
+				8332391C1B2FD4D300B806CE /* TWRefreshCollectionViewController.m in Sources */,
+				833239361B3009A500B806CE /* TWRefreshScrollViewController.m in Sources */,
+				833239311B2FF18C00B806CE /* TWRefreshCollectionView.m in Sources */,
+				833238D11B2E6D5F00B806CE /* AppDelegate.m in Sources */,
+				833238CE1B2E6D5F00B806CE /* main.m in Sources */,
+				833239331B2FF18C00B806CE /* TWRefreshIndicatorView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		833238DD1B2E6D6000B806CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				833238E81B2E6D6000B806CE /* TWRefreshDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		833238E31B2E6D6000B806CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 833238C71B2E6D5F00B806CE /* TWRefreshDemo */;
+			targetProxy = 833238E21B2E6D6000B806CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		833238D51B2E6D5F00B806CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				833238D61B2E6D5F00B806CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		833238DA1B2E6D5F00B806CE /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				833238DB1B2E6D5F00B806CE /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		833238E91B2E6D6000B806CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		833238EA1B2E6D6000B806CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		833238EC1B2E6D6000B806CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		833238ED1B2E6D6000B806CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		833238EF1B2E6D6000B806CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TWRefreshDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWRefreshDemo.app/TWRefreshDemo";
+			};
+			name = Debug;
+		};
+		833238F01B2E6D6000B806CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TWRefreshDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWRefreshDemo.app/TWRefreshDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		833238C31B2E6D5E00B806CE /* Build configuration list for PBXProject "TWRefreshDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833238E91B2E6D6000B806CE /* Debug */,
+				833238EA1B2E6D6000B806CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		833238EB1B2E6D6000B806CE /* Build configuration list for PBXNativeTarget "TWRefreshDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833238EC1B2E6D6000B806CE /* Debug */,
+				833238ED1B2E6D6000B806CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		833238EE1B2E6D6000B806CE /* Build configuration list for PBXNativeTarget "TWRefreshDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				833238EF1B2E6D6000B806CE /* Debug */,
+				833238F01B2E6D6000B806CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 833238C01B2E6D5E00B806CE /* Project object */;
+}

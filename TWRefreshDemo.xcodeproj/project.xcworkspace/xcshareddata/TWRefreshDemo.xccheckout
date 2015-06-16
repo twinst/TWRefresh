@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C12B1A8C-2787-40C6-A557-D2512A9CD986</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TWRefreshDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>575b07e2-ca90-4265-8d2b-796357eef20c</key>
+		<string>http://code.taobao.org/svn/easyrefresh</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/TWRefreshDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>575b07e2-ca90-4265-8d2b-796357eef20c</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>575b07e2-ca90-4265-8d2b-796357eef20c</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>575b07e2-ca90-4265-8d2b-796357eef20c</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TWRefreshX</string>
+		</dict>
+	</array>
+</dict>
+</plist>
