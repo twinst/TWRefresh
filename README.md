@@ -1,5 +1,5 @@
 # TWRefresh
-Scroll View Pulling Refresh
+UIScroll View Pulling Refresh
 
 #Classes
 
@@ -16,7 +16,7 @@ TWRefreshTableView.h
 TWRefreshCollectionView.h
 
 
-# You can create your own indicators, just need to implement protocal TWRefreshIndicator
+# You can easily create your own indicators, just need to implement protocal TWRefreshIndicator
 
 Example:
 
@@ -24,7 +24,7 @@ Example:
 
 @end
 
-@implementation TWRefreshIndicatorView
+@implementation CustomRefreshIndicatorView
 
 - (void) start {
 }
