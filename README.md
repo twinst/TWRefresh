@@ -20,7 +20,7 @@ TWRefreshCollectionView.h
 
 Example:
 
-@interface CustomRefreshIndicatorView : UIView<TWRefreshIndicator>
+@interface CustomRefreshIndicatorView : UIView &lt;TWRefreshIndicator&gt;
 
 @end
 
