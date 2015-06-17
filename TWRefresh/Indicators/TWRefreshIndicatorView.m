@@ -76,13 +76,20 @@
 }
 
 - (void) startAnimation {
+    // Remove animation first
+    [_arcLayer removeAnimationForKey:@"pulling.refresh.rotation"];
+    [_imageView.layer removeAnimationForKey:@"pulling.refresh.rotation"];
+    
+    // Add animation
     _arcLayer.strokeEnd = 0.94;
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     anim.fromValue = [NSNumber numberWithFloat:0.0];
-    anim.toValue = [NSNumber numberWithFloat:30 * M_PI];
-    anim.duration = 20.0;
-    [_arcLayer addAnimation:anim forKey:@"rotation"];
-    [_imageView.layer addAnimation:anim forKey:@"rotation"];
+    anim.toValue = [NSNumber numberWithFloat:2 * M_PI];
+    anim.duration = 1.0;
+    anim.repeatCount = INT_MAX;
+    [_arcLayer addAnimation:anim forKey:@"pulling.refresh.rotation"];
+    anim.toValue = [NSNumber numberWithFloat:-2*M_PI];
+    [_imageView.layer addAnimation:anim forKey:@"pulling.refresh.rotation"];
 }
 
 @end
