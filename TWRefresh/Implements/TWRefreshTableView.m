@@ -38,8 +38,6 @@
 }
 
 - (void) prepareRefresh {
-    //self.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
-    
     if((_refreshType & TWRefreshTypeTop) == TWRefreshTypeTop){
         [self setRefreshHeaderWithIndicatorClass:[TWRefreshIndicatorView class]];
     }
