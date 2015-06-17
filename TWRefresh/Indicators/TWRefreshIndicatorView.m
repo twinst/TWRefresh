@@ -30,13 +30,10 @@
 
 - (void) start {
     [self startAnimation];
-    NSLog(@"############ Start Refreshing");
 }
 
 - (void) stop {
-    [_arcLayer removeAllAnimations];
-    [_imageView.layer removeAllAnimations];
-    NSLog(@"############### Stop Refreshing");
+    [self removeAnimations];
 }
 
 - (void) pullingWithRatio:(CGFloat)ratio {
@@ -46,6 +43,11 @@
 - (void) addImageLayer {
     _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"indicator-center-icon"]];
     [self addSubview:_imageView];
+}
+
+- (void) removeAnimations {
+    [_arcLayer removeAnimationForKey:@"pulling.refresh.rotation"];
+    [_imageView.layer removeAnimationForKey:@"pulling.refresh.rotation"];
 }
 
 -(void) addShapeLayer {
@@ -77,8 +79,7 @@
 
 - (void) startAnimation {
     // Remove animation first
-    [_arcLayer removeAnimationForKey:@"pulling.refresh.rotation"];
-    [_imageView.layer removeAnimationForKey:@"pulling.refresh.rotation"];
+    [self removeAnimations];
     
     // Add animation
     _arcLayer.strokeEnd = 0.94;
