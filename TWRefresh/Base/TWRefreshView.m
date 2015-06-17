@@ -39,8 +39,9 @@
     UIScrollView *_scrollView;
     __unsafe_unretained id<TWRefreshIndicator> _indicator;
     TWRefreshViewType _type;
-    UIEdgeInsets _originalContentInsets;
     TWRefreshState _state;
+    
+    UIEdgeInsets _originalContentInsets;
 }
 
 - (id) initWithType:(TWRefreshViewType)type {
@@ -77,14 +78,17 @@
     if (!newSuperview || ![newSuperview isKindOfClass:[UIScrollView class]]) {
         return;
     }
-
+    
     _scrollView = (UIScrollView*)newSuperview;
-    _originalContentInsets = _scrollView.contentInset;
+    
+    // Work around, just get the correct original content insets
+    [self performSelector:@selector(initOriginalContentOffset) withObject:nil afterDelay:0.01];
+    
     CGRect r = self.frame;
     r.origin.x = 0;
     r.size.width = newSuperview.frame.size.width;
     self.frame = r;
-
+    
     // If has super view
     if (self.superview) {
         [self removeObservers];
@@ -92,6 +96,10 @@
     
     // Add required observers
     [self addObservers];
+}
+
+- (void) initOriginalContentOffset {
+    _originalContentInsets = _scrollView.contentInset;
 }
 
 - (void) removeFromSuperview {
@@ -126,7 +134,6 @@
             [UIView animateWithDuration:0.25 animations:^{
                 _scrollView.contentInset = edgeInset;
             } completion:^(BOOL finished) {
-                [_scrollView refreshHeader];
             }];
         }
         else if (_type==TWRefreshViewFooter) {
@@ -135,7 +142,6 @@
             [UIView animateWithDuration:0.25 animations:^{
                 _scrollView.contentInset = edgeInset;
             } completion:^(BOOL finished) {
-                [_scrollView refreshFooter];
             }];
         }
         
@@ -160,6 +166,10 @@
             UIEdgeInsets edgeInset = _scrollView.contentInset;
             // Fix inset issue, when scroll view is refresh, and push another view controller
             edgeInset.bottom -= self.frame.size.height;//_originalContentInsets.bottom;
+            
+            // If scroll view content size height less than it's frame
+            edgeInset.bottom -= MAX(_scrollView.frame.size.height-_originalContentInsets.top-_originalContentInsets.bottom-_scrollView.contentSize.height, 0);
+            
             [UIView animateWithDuration:0.25 animations:^{
                 _scrollView.contentInset = edgeInset;
             } completion:^(BOOL finished) {
@@ -207,7 +217,7 @@
     }
     
     // Correct content inset firstly set here, assignment in willMoveToSuperView not work infact
-    _originalContentInsets = _scrollView.contentInset;
+    //_originalContentInsets = _scrollView.contentInset;
     
     CGPoint contentOffset = _scrollView.contentOffset;
     if (_scrollView.isDragging) {
@@ -228,7 +238,7 @@
         }
         else if (_type==TWRefreshViewFooter) {
             CGFloat offsetY = contentOffset.y+_originalContentInsets.top;
-            CGFloat beginY = MAX(_scrollView.contentSize.height-_scrollView.frame.size.height+_originalContentInsets.top+_originalContentInsets.bottom,0);
+            CGFloat beginY = MAX(_scrollView.contentSize.height-_scrollView.frame.size.height+_originalContentInsets.top+_originalContentInsets.bottom, 0);
             if (offsetY>=beginY+self.frame.size.height) {
                 _state = TWRefreshStateReadyToRefresh;
             }
@@ -247,12 +257,12 @@
     else {
         if (_type==TWRefreshViewHeader) {
             if (_state==TWRefreshStateReadyToRefresh) {
-                self.state = TWRefreshStateRefreshing;
+                [_scrollView refreshHeader];
             }
         }
         else if (_type==TWRefreshViewFooter) {
             if (_state==TWRefreshStateReadyToRefresh) {
-                self.state = TWRefreshStateRefreshing;
+                [_scrollView refreshFooter];
             }
         }
     }
