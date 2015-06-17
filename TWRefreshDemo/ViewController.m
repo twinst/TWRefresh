@@ -33,7 +33,7 @@
     
     self.title = @"TWRrefrsh";
     
-    _count = 22;
+    _count = 23;
     
     UIBarButtonItem *disableHeader = [[UIBarButtonItem alloc] initWithTitle:@"DH" style:UIBarButtonItemStylePlain target:self action:@selector(toggleRefreshHeaderEnabledNo:)];
     UIBarButtonItem *disableFooter = [[UIBarButtonItem alloc] initWithTitle:@"DF" style:UIBarButtonItemStylePlain target:self action:@selector(toggleRefreshFooterEnabledNo:)];
@@ -43,7 +43,7 @@
     UIBarButtonItem *enableFooter = [[UIBarButtonItem alloc] initWithTitle:@"EF" style:UIBarButtonItemStylePlain target:self action:@selector(toggleRefreshFooterEnabledYes:)];
     self.navigationItem.leftBarButtonItems = @[enableHeader, enableFooter];
     
-    _tableView = [[TWRefreshTableView alloc] initWithFrame:self.view.bounds refreshType:TWRefreshTypeTop|TWRefreshTypeBottom];
+    _tableView = [[TWRefreshTableView alloc] initWithFrame:self.view.bounds refreshType:TWRefreshTypeTop|TWRefreshTypeBottom andAutoLoad:YES];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -123,13 +123,13 @@
 }
 
 - (void) stopHeader {
-    _count = 20;
+    _count = 3;
     [_tableView stopHeaderRefreshing];
     [_tableView reloadData];
 }
 
 - (void) stopFooter {
-    _count += 20;
+    _count += 8;
     [_tableView stopFooterRefreshing];
     [_tableView reloadData];
 }
