@@ -22,6 +22,7 @@
 		833239321B2FF18C00B806CE /* TWRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8332392B1B2FF18C00B806CE /* TWRefreshTableView.m */; };
 		833239331B2FF18C00B806CE /* TWRefreshIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8332392E1B2FF18C00B806CE /* TWRefreshIndicatorView.m */; };
 		833239361B3009A500B806CE /* TWRefreshScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833239351B3009A500B806CE /* TWRefreshScrollViewController.m */; };
+		83E8290D1B39517A005B61AD /* bugs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83E8290C1B39517A005B61AD /* bugs.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		8332392E1B2FF18C00B806CE /* TWRefreshIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshIndicatorView.m; sourceTree = "<group>"; };
 		833239341B3009A500B806CE /* TWRefreshScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWRefreshScrollViewController.h; sourceTree = "<group>"; };
 		833239351B3009A500B806CE /* TWRefreshScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWRefreshScrollViewController.m; sourceTree = "<group>"; };
+		83E8290C1B39517A005B61AD /* bugs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bugs.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				833239201B2FF18C00B806CE /* Base */,
 				8332392C1B2FF18C00B806CE /* Indicators */,
 				833239261B2FF18C00B806CE /* Implements */,
+				83E8290C1B39517A005B61AD /* bugs.txt */,
 			);
 			path = TWRefresh;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833238D71B2E6D5F00B806CE /* Main.storyboard in Resources */,
+				83E8290D1B39517A005B61AD /* bugs.txt in Resources */,
 				833238DC1B2E6D5F00B806CE /* LaunchScreen.xib in Resources */,
 				833238D91B2E6D5F00B806CE /* Images.xcassets in Resources */,
 			);
@@ -431,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -442,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
