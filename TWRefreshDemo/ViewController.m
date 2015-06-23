@@ -43,11 +43,12 @@
     UIBarButtonItem *enableFooter = [[UIBarButtonItem alloc] initWithTitle:@"EF" style:UIBarButtonItemStylePlain target:self action:@selector(toggleRefreshFooterEnabledYes:)];
     self.navigationItem.leftBarButtonItems = @[enableHeader, enableFooter];
     
-    _tableView = [[TWRefreshTableView alloc] initWithFrame:self.view.bounds refreshType:TWRefreshTypeTop|TWRefreshTypeBottom andAutoLoad:YES];
+    _tableView = [[TWRefreshTableView alloc] initWithFrame:self.view.bounds refreshType:TWRefreshTypeTop|TWRefreshTypeBottom];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.refreshDelegate = self;
+    
     [self.view addSubview:_tableView];
 }
 
@@ -82,6 +83,21 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 44)];
+    view.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+    UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:14];
+    label.text = @"This is a section header";
+    [view addSubview:label];
+    return view;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,7 +151,7 @@
 }
 
 - (void) beginRefreshHeader:(TWRefreshTableView *)tableView {
-    [self performSelector:@selector(stopHeader) withObject:nil afterDelay:2.0];
+    [self performSelector:@selector(stopHeader) withObject:nil afterDelay:4.0];
 }
 
 - (void) beginRefreshFooter:(TWRefreshTableView *)tableView {
