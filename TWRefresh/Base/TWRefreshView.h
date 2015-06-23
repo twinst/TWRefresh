@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TWRefreshIndicator.h"
 
-typedef NS_ENUM(NSInteger, TWRefreshViewType) {
-    TWRefreshViewHeader,
-    TWRefreshViewFooter,
-};
-
 typedef NS_ENUM(NSInteger, TWRefreshState) {
     TWRefreshStateNormal,
     TWRefreshStateReadyToRefresh,
@@ -21,18 +16,37 @@ typedef NS_ENUM(NSInteger, TWRefreshState) {
 };
 
 @interface TWRefreshView : UIView
+{
+    // Scroll view to be pulling refresh
+    UIScrollView *_scrollView;
+    
+    // Indicator
+    __unsafe_unretained id<TWRefreshIndicator> _indicator;
+    
+    // Refresh state
+    TWRefreshState _state;
+    
+    // Scroll view original content inset
+    UIEdgeInsets _originalContentInset;
+    
+    // Refresh inset height added when refreshing
+    CGFloat _refreshInsetHeight;
+}
 
 @property (nonatomic, assign) TWRefreshState state;
 
-- (id) initWithType:(TWRefreshViewType) type;
-
-// Refresh type
-@property (nonatomic, assign)  TWRefreshViewType type;
-
-//  Pulling refresh view
+// Pulling refresh view
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 
 // Refresh indicator view
 @property (nonatomic, assign) id<TWRefreshIndicator> indicator;
+
+@end
+
+@interface TWRefreshHeaderView : TWRefreshView
+
+@end
+
+@interface TWRefreshFooterView : TWRefreshView
 
 @end

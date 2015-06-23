@@ -64,7 +64,7 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
 
 - (void) setRefreshHeaderIndicator:(id<TWRefreshIndicator>)indicator {
     if (!self.header) {
-        TWRefreshView *refreshView = [[TWRefreshView alloc] initWithType:TWRefreshViewHeader];
+        TWRefreshView *refreshView = [[TWRefreshHeaderView alloc] init];
         [self addSubview:refreshView];
         self.header = refreshView;
     }
@@ -82,7 +82,7 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
 
 - (void) setRefreshFooterIndicator:(id<TWRefreshIndicator>)indicator {
     if (!self.footer) {
-        TWRefreshView *refreshView = [[TWRefreshView alloc] initWithType:TWRefreshViewFooter];
+        TWRefreshView *refreshView = [[TWRefreshFooterView alloc] init];
         [self addSubview:refreshView];
         self.footer = refreshView;
     }

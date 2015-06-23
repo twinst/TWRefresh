@@ -16,11 +16,21 @@
 #define TWRefreshHeaderViewHeight 54
 #define TWRefreshFooterViewHeight 49
 
-// Refresh state, view type, indicator
 @interface TWRefreshView ()
+// Refresh state, indicator
 - (void) setState:(TWRefreshState)state;
-- (void) setType:(TWRefreshViewType)type;
 - (void) setIndicator:(id<TWRefreshIndicator>)indicator;
+
+// Content inset
+- (void) addRefreshContentInset:(BOOL) animated;
+- (void) removeRefreshContentInset:(BOOL) animated;
+
+- (void) layout;
+
+// Observer handles
+- (void) contentOffsetChanged:(NSDictionary*) change;
+- (void) contentInsetChanged:(NSDictionary*) change;
+- (void) contentSizeChanged:(NSDictionary*) change;
 @end
 
 // Observers
@@ -29,28 +39,7 @@
 - (void) removeObservers;
 @end
 
-// Layout refresh view,
-@interface TWRefreshView (InnerMethods)
-- (void) layout;
-@end
-
 @implementation TWRefreshView
-{
-    UIScrollView *_scrollView;
-    __unsafe_unretained id<TWRefreshIndicator> _indicator;
-    TWRefreshViewType _type;
-    TWRefreshState _state;
-    
-    UIEdgeInsets _originalContentInsets;
-}
-
-- (id) initWithType:(TWRefreshViewType)type {
-    self = [super init];
-    if (self) {
-        self.type = type;
-    }
-    return self;
-}
 
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -62,7 +51,6 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
     [self layout];
 }
 
@@ -81,8 +69,8 @@
     
     _scrollView = (UIScrollView*)newSuperview;
     
-    // Work around, just get the correct original content insets
-    [self performSelector:@selector(initOriginalContentOffset) withObject:nil afterDelay:0.01];
+    // Work around, just get the correct original content inset
+    [self performSelector:@selector(initOriginalContentInset) withObject:nil afterDelay:0.01];
     
     CGRect r = self.frame;
     r.origin.x = 0;
@@ -98,8 +86,8 @@
     [self addObservers];
 }
 
-- (void) initOriginalContentOffset {
-    _originalContentInsets = _scrollView.contentInset;
+- (void) initOriginalContentInset {
+    _originalContentInset = _scrollView.contentInset;
 }
 
 - (void) removeFromSuperview {
@@ -116,34 +104,16 @@
     }
 }
 
-- (void) setType:(TWRefreshViewType)type {
-    _type = type;
-    [self setNeedsLayout];
-}
-
 - (void) setState:(TWRefreshState)state {
     if (state==_state) {
         return;
     }
     _state = state;
     if (state==TWRefreshStateRefreshing) {
+        _refreshInsetHeight = self.frame.size.height;
+        
         // Set content inset
-        if (_type==TWRefreshViewHeader) {
-            UIEdgeInsets edgeInset = _scrollView.contentInset;
-            edgeInset.top = self.frame.size.height + _originalContentInsets.top;
-            [UIView animateWithDuration:0.25 animations:^{
-                _scrollView.contentInset = edgeInset;
-            } completion:^(BOOL finished) {
-            }];
-        }
-        else if (_type==TWRefreshViewFooter) {
-            UIEdgeInsets edgeInset = _scrollView.contentInset;
-            edgeInset.bottom = self.frame.size.height+_originalContentInsets.bottom+MAX(_scrollView.frame.size.height-_originalContentInsets.top-_originalContentInsets.bottom-_scrollView.contentSize.height, 0);
-            [UIView animateWithDuration:0.25 animations:^{
-                _scrollView.contentInset = edgeInset;
-            } completion:^(BOOL finished) {
-            }];
-        }
+        [self addRefreshContentInset:YES];
         
         // Start indicator
         if ([_indicator respondsToSelector:@selector(start)]) {
@@ -152,35 +122,39 @@
     }
     else if (state==TWRefreshStateNormal) {
         // Set content inset
-        if (_type==TWRefreshViewHeader) {
-            UIEdgeInsets edgeInset = _scrollView.contentInset;
-            // Fix inset issue, when scroll view is refresh, and push another view controller
-            edgeInset.top -= self.frame.size.height;//_originalContentInsets.top;
-            [UIView animateWithDuration:0.25 animations:^{
-                _scrollView.contentInset = edgeInset;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-        else if (_type==TWRefreshViewFooter) {
-            UIEdgeInsets edgeInset = _scrollView.contentInset;
-            // Fix inset issue, when scroll view is refresh, and push another view controller
-            edgeInset.bottom -= self.frame.size.height;//_originalContentInsets.bottom;
-            
-            // If scroll view content size height less than it's frame
-            edgeInset.bottom -= MAX(_scrollView.frame.size.height-_originalContentInsets.top-_originalContentInsets.bottom-_scrollView.contentSize.height, 0);
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                _scrollView.contentInset = edgeInset;
-            } completion:^(BOOL finished) {
-            }];
-        }
+        [self removeRefreshContentInset:YES];
         
         // Start indicator
         if ([_indicator respondsToSelector:@selector(stop)]) {
             [_indicator stop];
         }
     }
+}
+
+
+// Override by sub classes
+- (void) addRefreshContentInset:(BOOL)animated {
+    // Realization in sub class
+}
+
+- (void) removeRefreshContentInset:(BOOL)animated {
+    // Realization in sub class
+}
+
+- (void) layout {
+    // Realization in sub class
+}
+
+- (void) contentOffsetChanged:(NSDictionary*) change {
+    // Realization in sub class
+}
+
+- (void) contentInsetChanged:(NSDictionary*) change {
+    [self layout];
+}
+
+- (void) contentSizeChanged:(NSDictionary*) change {
+    [self layout];
 }
 
 @end
@@ -211,7 +185,121 @@
     }
 }
 
+@end
+
+#pragma refresh header view
+@implementation TWRefreshHeaderView
+
 - (void) contentOffsetChanged:(NSDictionary*) change {
+    // Call super method
+    [super contentOffsetChanged:change];
+    
+    // Check refresh state
+    if (_state==TWRefreshStateRefreshing) {
+        // NSLog(@"################## y: %f, %f, %f", _scrollView.contentOffset.y, _originalContentInset.top, _refreshInsetHeight);
+        [self adjustContentInset];
+        return;
+    }
+    
+    // Correct content inset firstly set here, assignment in willMoveToSuperView not work infact
+    //_originalContentInsets = _scrollView.contentInset;
+    
+    CGPoint contentOffset = _scrollView.contentOffset;
+    if (_scrollView.isDragging) {
+        CGFloat ratio = 0;
+        BOOL invokeRatio = NO;
+        CGFloat offsetY = contentOffset.y+_originalContentInset.top;
+        if (offsetY<=-self.frame.size.height) {
+            _state = TWRefreshStateReadyToRefresh;
+        }
+        else {
+            _state = TWRefreshStateNormal;
+        }
+        if (offsetY<0) {
+            ratio = MAX(0, MIN(-offsetY/self.frame.size.height, 1.0));
+            invokeRatio = YES;
+        }
+        if (invokeRatio && [_indicator respondsToSelector:@selector(pullingWithRatio:)]) {
+            [_indicator pullingWithRatio:ratio];
+        }
+    }
+    else {
+        if (_state==TWRefreshStateReadyToRefresh) {
+            [_scrollView refreshHeader];
+        }
+    }
+}
+
+- (void) adjustContentInset {
+    // Fix: A known issue here, when table view with section header, and scroll up, a gap between top and section header
+    /*
+    CGPoint contentOffset = _scrollView.contentOffset;
+    if (contentOffset.y>-_originalContentInset.top-_refreshInsetHeight) {
+        UIEdgeInsets inset = _scrollView.contentInset;
+        _refreshInsetHeight = - MIN((contentOffset.y+_originalContentInset.top), 0);
+        inset.top = _originalContentInset.top +_refreshInsetHeight;
+        _scrollView.contentInset = inset;
+    }
+    else {
+        UIEdgeInsets inset = _scrollView.contentInset;
+        _refreshInsetHeight = MIN(-(contentOffset.y+_originalContentInset.top), self.frame.size.height);
+        inset.top = _originalContentInset.top +_refreshInsetHeight;
+        _scrollView.contentInset = inset;
+    }*/
+}
+
+- (void) contentInsetChanged:(NSDictionary*) change {
+    [super contentInsetChanged:change];
+}
+
+- (void) contentSizeChanged:(NSDictionary*) change {
+    [super contentSizeChanged:change];
+}
+
+- (void) addRefreshContentInset:(BOOL)animated {
+    UIEdgeInsets edgeInset = _scrollView.contentInset;
+    edgeInset.top = _refreshInsetHeight + _originalContentInset.top;
+    CGFloat duration = animated? 0.25 : 0;
+    [UIView animateWithDuration:duration animations:^{
+        _scrollView.contentInset = edgeInset;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void) removeRefreshContentInset:(BOOL)animated {
+    UIEdgeInsets edgeInset = _scrollView.contentInset;
+    // Fix inset issue, when scroll view is refresh, and push another view controller
+    edgeInset.top -= _refreshInsetHeight;//=_originalContentInsets.top;
+    _refreshInsetHeight = 0;
+    CGFloat duration = animated? 0.25 : 0;
+    [UIView animateWithDuration:duration animations:^{
+        _scrollView.contentInset = edgeInset;
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void) layout {
+    CGRect r = self.frame;
+    r.size.height = TWRefreshHeaderViewHeight;
+    r.origin.y = -r.size.height;
+    self.frame = r;
+    if (_indicator) {
+        ((UIView*)_indicator).frame = self.bounds;
+    }
+}
+
+@end
+
+#pragma refresh footer view
+@implementation TWRefreshFooterView
+
+- (void) contentOffsetChanged:(NSDictionary*) change {
+    
+    // Call super method
+    [super contentOffsetChanged:change];
+    
+    // Check refresh state
     if (_state==TWRefreshStateRefreshing) {
         return;
     }
@@ -223,81 +311,67 @@
     if (_scrollView.isDragging) {
         CGFloat ratio = 0;
         BOOL invokeRatio = NO;
-        if (_type==TWRefreshViewHeader) {
-            CGFloat offsetY = contentOffset.y+_originalContentInsets.top;
-            if (offsetY<=-self.frame.size.height) {
-                _state = TWRefreshStateReadyToRefresh;
-            }
-            else {
-                _state = TWRefreshStateNormal;
-            }
-            if (offsetY<0) {
-                ratio = MAX(0, MIN(-offsetY/self.frame.size.height, 1.0));
-                invokeRatio = YES;
-            }
+        CGFloat offsetY = contentOffset.y+_originalContentInset.top;
+        CGFloat beginY = MAX(_scrollView.contentSize.height-_scrollView.frame.size.height+_originalContentInset.top+_originalContentInset.bottom, 0);
+        if (offsetY>=beginY+self.frame.size.height) {
+            _state = TWRefreshStateReadyToRefresh;
         }
-        else if (_type==TWRefreshViewFooter) {
-            CGFloat offsetY = contentOffset.y+_originalContentInsets.top;
-            CGFloat beginY = MAX(_scrollView.contentSize.height-_scrollView.frame.size.height+_originalContentInsets.top+_originalContentInsets.bottom, 0);
-            if (offsetY>=beginY+self.frame.size.height) {
-                _state = TWRefreshStateReadyToRefresh;
-            }
-            else {
-                _state = TWRefreshStateNormal;
-            }
-            if (offsetY>beginY) {
-                ratio = MAX(0, MIN((offsetY-beginY)/self.frame.size.height, 1.0));
-                invokeRatio = YES;
-            }
+        else {
+            _state = TWRefreshStateNormal;
+        }
+        if (offsetY>beginY) {
+            ratio = MAX(0, MIN((offsetY-beginY)/self.frame.size.height, 1.0));
+            invokeRatio = YES;
         }
         if (invokeRatio && [_indicator respondsToSelector:@selector(pullingWithRatio:)]) {
             [_indicator pullingWithRatio:ratio];
         }
     }
     else {
-        if (_type==TWRefreshViewHeader) {
-            if (_state==TWRefreshStateReadyToRefresh) {
-                [_scrollView refreshHeader];
-            }
-        }
-        else if (_type==TWRefreshViewFooter) {
-            if (_state==TWRefreshStateReadyToRefresh) {
-                [_scrollView refreshFooter];
-            }
+        if (_state==TWRefreshStateReadyToRefresh) {
+            [_scrollView refreshFooter];
         }
     }
 }
 
 - (void) contentInsetChanged:(NSDictionary*) change {
-    [self layout];
+    [super contentInsetChanged:change];
 }
 
 - (void) contentSizeChanged:(NSDictionary*) change {
-    [self layout];
+    [super contentSizeChanged:change];
 }
 
-@end
+- (void) addRefreshContentInset:(BOOL)animated {
+    UIEdgeInsets edgeInset = _scrollView.contentInset;
+    edgeInset.bottom = _refreshInsetHeight+_originalContentInset.bottom+MAX(_scrollView.frame.size.height-_originalContentInset.top-_originalContentInset.bottom-_scrollView.contentSize.height, 0);
+    CGFloat duration = animated? 0.25 : 0;
+    [UIView animateWithDuration:duration animations:^{
+        _scrollView.contentInset = edgeInset;
+    } completion:^(BOOL finished) {
+    }];
+}
 
-@implementation TWRefreshView (InnerMethods)
+- (void) removeRefreshContentInset:(BOOL)animated {
+    UIEdgeInsets edgeInset = _scrollView.contentInset;
+    // Fix inset issue, when scroll view is refresh, and push another view controller
+    edgeInset.bottom -= _refreshInsetHeight;//=_originalContentInsets.bottom;
+    _refreshInsetHeight = 0;
+    
+    // If scroll view content size height less than it's frame
+    edgeInset.bottom -= MAX(_scrollView.frame.size.height-_originalContentInset.top-_originalContentInset.bottom-_scrollView.contentSize.height, 0);
+    
+    CGFloat duration = animated? 0.25 : 0;
+    [UIView animateWithDuration:duration animations:^{
+        _scrollView.contentInset = edgeInset;
+    } completion:^(BOOL finished) {
+    }];
+}
 
 - (void) layout {
     CGRect r = self.frame;
-    switch (_type) {
-        case TWRefreshViewHeader:
-        {
-            r.size.height = TWRefreshHeaderViewHeight;
-            r.origin.y = -r.size.height;
-            break;
-        }
-        case TWRefreshViewFooter:
-        {
-            r.size.height = TWRefreshFooterViewHeight;
-            r.origin.y = MAX(_scrollView.contentSize.height, _scrollView.frame.size.height-_originalContentInsets.top-_originalContentInsets.bottom);
-            break;
-        }
-        default:
-            break;
-    }
+    r.size.height = TWRefreshFooterViewHeight;
+    r.origin.y = MAX(_scrollView.contentSize.height, _scrollView.frame.size.height-_originalContentInset.top-_originalContentInset.bottom);
     self.frame = r;
     if (_indicator) {
         ((UIView*)_indicator).frame = self.bounds;

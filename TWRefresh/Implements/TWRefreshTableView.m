@@ -15,6 +15,16 @@
     TWRefreshType _refreshType;
 }
 
+- (id) initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        _refreshType = TWRefreshTypeTop|TWRefreshTypeBottom;
+        _autoLoad = YES;
+        [self prepareRefresh];
+    }
+    return self;
+}
+
 - (id) initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type {
     return [self initWithFrame:frame refreshType:type andAutoLoad:YES];
 }
