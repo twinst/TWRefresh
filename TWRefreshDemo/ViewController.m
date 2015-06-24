@@ -91,11 +91,13 @@
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 44)];
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     view.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
     UILabel *label = [[UILabel alloc] initWithFrame:view.bounds];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:14];
     label.text = @"This is a section header";
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [view addSubview:label];
     return view;
 }

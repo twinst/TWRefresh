@@ -12,6 +12,7 @@
 #define TWRefreshContentOffsetKeyPath @"contentOffset"
 #define TWRefreshContentInsetKeyPath @"contentInset"
 #define TWRefreshContentSizeKeyPath @"contentSize"
+#define TWRefreshFrameKeyPath @"frame"
 
 #define TWRefreshHeaderViewHeight 54
 #define TWRefreshFooterViewHeight 49
@@ -31,6 +32,7 @@
 - (void) contentOffsetChanged:(NSDictionary*) change;
 - (void) contentInsetChanged:(NSDictionary*) change;
 - (void) contentSizeChanged:(NSDictionary*) change;
+- (void) contentFrameChanged:(NSDictionary*) change;
 @end
 
 // Observers
@@ -157,6 +159,10 @@
     [self layout];
 }
 
+- (void) contentFrameChanged:(NSDictionary*) change {
+    // Realization in sub class
+}
+
 @end
 
 @implementation TWRefreshView (ObserverMethods)
@@ -165,12 +171,14 @@
     [_scrollView addObserver:self forKeyPath:TWRefreshContentOffsetKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [_scrollView addObserver:self forKeyPath:TWRefreshContentInsetKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [_scrollView addObserver:self forKeyPath:TWRefreshContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    [_scrollView addObserver:self forKeyPath:TWRefreshFrameKeyPath options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void) removeObservers {
     [self.superview removeObserver:self forKeyPath:TWRefreshContentOffsetKeyPath];
     [self.superview removeObserver:self forKeyPath:TWRefreshContentInsetKeyPath];
     [self.superview removeObserver:self forKeyPath:TWRefreshContentSizeKeyPath];
+    [self.superview removeObserver:self forKeyPath:TWRefreshFrameKeyPath];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -183,12 +191,18 @@
     else if ([TWRefreshContentSizeKeyPath isEqualToString:keyPath]) {
         [self contentSizeChanged:change];
     }
+    else if ([TWRefreshFrameKeyPath isEqualToString:keyPath]) {
+        [self contentFrameChanged:change];
+    }
 }
 
 @end
 
 #pragma refresh header view
 @implementation TWRefreshHeaderView
+{
+    int _flag; // This flag just do .... work around flag
+}
 
 - (void) contentOffsetChanged:(NSDictionary*) change {
     // Call super method
@@ -196,7 +210,6 @@
     
     // Check refresh state
     if (_state==TWRefreshStateRefreshing) {
-        // NSLog(@"################## y: %f, %f, %f", _scrollView.contentOffset.y, _originalContentInset.top, _refreshInsetHeight);
         [self adjustContentInset];
         return;
     }
@@ -231,8 +244,10 @@
 }
 
 - (void) adjustContentInset {
+    if (_flag>0) {
+        return;
+    }
     // Fix: A known issue here, when table view with section header, and scroll up, a gap between top and section header
-    /*
     CGPoint contentOffset = _scrollView.contentOffset;
     if (contentOffset.y>-_originalContentInset.top-_refreshInsetHeight) {
         UIEdgeInsets inset = _scrollView.contentInset;
@@ -245,10 +260,24 @@
         _refreshInsetHeight = MIN(-(contentOffset.y+_originalContentInset.top), self.frame.size.height);
         inset.top = _originalContentInset.top +_refreshInsetHeight;
         _scrollView.contentInset = inset;
-    }*/
+    }
+}
+
+- (void) contentFrameChanged:(NSDictionary *)change {
+    _flag = 2;
 }
 
 - (void) contentInsetChanged:(NSDictionary*) change {
+    if (_state!=TWRefreshStateRefreshing) {
+        _flag = 1;
+        _originalContentInset = _scrollView.contentInset;
+    }
+    else {
+        if (_flag>0) {
+            _flag --;
+            _originalContentInset.top = _scrollView.contentInset.top - _refreshInsetHeight;
+        }
+    }
     [super contentInsetChanged:change];
 }
 
@@ -276,6 +305,7 @@
     [UIView animateWithDuration:duration animations:^{
         _scrollView.contentInset = edgeInset;
     } completion:^(BOOL finished) {
+        _flag = NO;
     }];
 }
 
@@ -335,6 +365,20 @@
 }
 
 - (void) contentInsetChanged:(NSDictionary*) change {
+    /*
+    if (_state!=TWRefreshStateRefreshing) {
+        _originalContentInset = _scrollView.contentInset;
+    }
+    else {
+        CGFloat top = _originalContentInset.top;
+        CGFloat bottom = _originalContentInset.bottom;
+        
+        _originalContentInset.bottom = _scrollView.contentInset.bottom;
+        _originalContentInset.bottom -= self.frame.size.height;
+        
+        // If scroll view content size height less than it's frame
+        _originalContentInset.bottom -= MAX(_scrollView.frame.size.height-top-bottom-_scrollView.contentSize.height, 0);
+    }*/
     [super contentInsetChanged:change];
 }
 

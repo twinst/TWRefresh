@@ -1,5 +1,0 @@
-There are 2 konwn issues to be fixed.
-
-1. Table with section header at top.
-
-2. App enable device rotatation.
