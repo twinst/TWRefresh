@@ -102,6 +102,7 @@
         _indicator = indicator;
         if ([indicator isKindOfClass:[UIView class]]) {
             [self addSubview:(UIView*)indicator];
+            [self layout];
         }
     }
 }
@@ -291,6 +292,7 @@
     CGFloat duration = animated? 0.25 : 0;
     [UIView animateWithDuration:duration animations:^{
         _scrollView.contentInset = edgeInset;
+        _scrollView.contentOffset = CGPointMake(0, -edgeInset.top);
     } completion:^(BOOL finished) {
         
     }];
