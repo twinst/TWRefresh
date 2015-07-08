@@ -118,6 +118,11 @@
         // Set content inset
         [self addRefreshContentInset:YES];
         
+        // Pulling ration 1.0
+        if ([_indicator respondsToSelector:@selector(pullingWithRatio:)]) {
+            [_indicator pullingWithRatio:1.0];
+        }
+        
         // Start indicator
         if ([_indicator respondsToSelector:@selector(start)]) {
             [_indicator start];
@@ -307,7 +312,7 @@
     [UIView animateWithDuration:duration animations:^{
         _scrollView.contentInset = edgeInset;
     } completion:^(BOOL finished) {
-        _flag = NO;
+        _flag = 0;
     }];
 }
 
