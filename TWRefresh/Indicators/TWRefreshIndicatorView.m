@@ -1,12 +1,26 @@
 //
-//  TWRefreshIndicaterView.m
+//  Copyright 2016 Chris.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+//
+//  TWRefreshIndicatorView.m
 //  TWRefresh
 //
-//  Created by Chris on 10/6/15.
-//  Copyright (c) 2015 iEasyNote. All rights reserved.
+//  Created by Chris on 24/5/2016.
 //
 
-#import <TWRefresh/TWRefreshIndicatorView.h>
+#import "TWRefreshIndicatorView.h"
 
 @implementation TWRefreshIndicatorView
 {
@@ -39,16 +53,16 @@
     [self drawLineAnimationWithRatio:0];
 }
 
-- (void) pullingWithRatio:(CGFloat)ratio {
+- (void)pullingWithRatio:(CGFloat)ratio {
     [self drawLineAnimationWithRatio:ratio];
 }
 
-- (void) removeAnimations {
+- (void)removeAnimations {
     [_arcLayer removeAnimationForKey:@"pulling.refresh.rotation"];
     [_imageView.layer removeAnimationForKey:@"pulling.refresh.rotation"];
 }
 
--(void) addShapeLayer {
+-(void)addShapeLayer {
     _arcLayer = [CAShapeLayer layer];
     _arcLayer.lineCap = kCALineCapRound;
     _arcLayer.lineJoin = kCALineJoinRound;
@@ -59,7 +73,7 @@
     [self.layer addSublayer:_arcLayer];
 }
 
-- (void) adjustShapeLayerPath {
+- (void)adjustShapeLayerPath {
     if (_arcLayer) {
         _arcLayer.frame = self.bounds;
         UIBezierPath *path = [UIBezierPath bezierPath];
@@ -67,19 +81,19 @@
         _arcLayer.path = path.CGPath;
     }
     if (_imageView) {
-        _imageView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        _imageView.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     }
     if (_wordsView) {
-        _wordsView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        _wordsView.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     }
 }
 
--(void)drawLineAnimationWithRatio:(CGFloat) ratio {
+-(void)drawLineAnimationWithRatio:(CGFloat)ratio {
     _arcLayer.strokeEnd = ratio;
     _wordsView.transform = CGAffineTransformMakeScale(ratio, ratio);
 }
 
-- (void) startAnimation {
+- (void)startAnimation {
     // Remove animation first
     [self removeAnimations];
     
