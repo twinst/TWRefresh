@@ -1,0 +1,8 @@
+//
+.DS_Store
+TWRefreshDemo/.DS_Store
+*.xccheckout
+*/xcschememanagement.plist
+TWRefresh.xcodeproj/xcuserdata/*
+TWRefresh.xcodeproj/project.xcworkspace/
+TWRefreshDemo.xcodeproj/project.xcworkspace/
