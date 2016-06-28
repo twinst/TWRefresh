@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, TWRefreshState) {
 @interface TWRefreshView : UIView
 {
     // Scroll view to be pulling refresh
-    UIScrollView *_scrollView;
+    __weak UIScrollView *_scrollView;
     
     // Indicator
     __unsafe_unretained id<TWRefreshIndicator> _indicator;
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, TWRefreshState) {
 @property (nonatomic, assign) TWRefreshState state;
 
 // Pulling refresh view
-@property (nonatomic, strong, readonly) UIScrollView *scrollView;
+@property (nonatomic, assign, readonly) UIScrollView *scrollView;
 
 // Refresh indicator view
 @property (nonatomic, assign) id<TWRefreshIndicator> indicator;

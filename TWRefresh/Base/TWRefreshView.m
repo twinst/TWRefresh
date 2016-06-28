@@ -83,7 +83,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
         return;
     }
     
-    _scrollView = (UIScrollView*)newSuperview;
+    _scrollView = (UIScrollView *)newSuperview;
     
     // Work around, just get the correct original content inset
     [self performSelector:@selector(initOriginalContentInset) withObject:nil afterDelay:0.01];
