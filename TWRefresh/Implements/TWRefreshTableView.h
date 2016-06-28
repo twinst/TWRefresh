@@ -31,11 +31,11 @@
 //Refresh Delegate
 @property (nonatomic, weak) id<TWTableViewRefreshingDelegate> refreshDelegate;
 
+@property (nonatomic, assign) TWRefreshType refreshType;
+
 // Constructors
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type;
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad;
-- (id)initWithFrame:(CGRect)frame andAutoLoad:(BOOL)autoLoad;
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle) style refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad;
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refreshTpye;
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle) style refreshType:(TWRefreshType)refreshType;
 
 @end
 

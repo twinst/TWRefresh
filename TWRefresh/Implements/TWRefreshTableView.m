@@ -25,30 +25,27 @@
 
 @implementation TWRefreshTableView
 {
-    BOOL _autoLoad;
     TWRefreshType _refreshType;
 }
 
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type {
-    return [self initWithFrame:frame refreshType:type andAutoLoad:YES];
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refreshTpye {
+    return [self initWithFrame:frame style:UITableViewStylePlain refreshType:refreshTpye];
 }
 
-- (id)initWithFrame:(CGRect)frame andAutoLoad:(BOOL)autoLoad {
-    return [self initWithFrame:frame refreshType:TWRefreshTypeTop|TWRefreshTypeBottom andAutoLoad:autoLoad];
-}
-
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad {
-    return [self initWithFrame:frame style:UITableViewStylePlain refreshType:type andAutoLoad:autoLoad];
-}
-
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle) style refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad {
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle) style refreshType:(TWRefreshType)refreshType {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        _refreshType = type;
-        _autoLoad = autoLoad;
+        _refreshType = refreshType;
         [self prepareRefresh];
     }
     return self;
+}
+
+- (void)setRefreshType:(TWRefreshType)refreshType {
+    if (_refreshType != refreshType) {
+        _refreshType = refreshType;
+        [self prepareRefresh];
+    }
 }
 
 - (void)prepareRefresh {

@@ -31,11 +31,12 @@
 //Refresh Delegate
 @property (nonatomic, weak) id<TWCollectionViewRefreshingDelegate> refreshDelegate;
 
+@property (nonatomic, assign) TWRefreshType refreshType;
+
 // Constructors
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type;
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad;
-- (id)initWithFrame:(CGRect)frame andAutoLoad:(BOOL) autoLoad;
-- (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout refreshType:(TWRefreshType)refreshType andAutoLoad:(BOOL)autoLoad;
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refresyType;
+
+- (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout refreshType:(TWRefreshType)refreshType;
 
 @end
 

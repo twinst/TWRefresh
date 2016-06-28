@@ -25,41 +25,35 @@
 
 @implementation TWRefreshCollectionView
 {
-    BOOL _autoLoad;
     TWRefreshType _refreshType;
 }
 
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type {
-    return [self initWithFrame:frame refreshType:type andAutoLoad:YES];
-}
-
-- (id)initWithFrame:(CGRect)frame andAutoLoad:(BOOL)autoLoad {
-    return [self initWithFrame:frame refreshType:TWRefreshTypeTop|TWRefreshTypeBottom andAutoLoad:autoLoad];
-}
-
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)type andAutoLoad:(BOOL)autoLoad {
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refresyType {
     self = [super initWithFrame:frame];
     if (self) {
-        _refreshType = type;
-        _autoLoad = autoLoad;
+        _refreshType = refresyType;
         [self prepareRefresh];
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout refreshType:(TWRefreshType)refreshType andAutoLoad:(BOOL)autoLoad {
+- (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout refreshType:(TWRefreshType)refreshType {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        _autoLoad = autoLoad;
         _refreshType = refreshType;
         [self prepareRefresh];
     }
     return self;
 }
 
+- (void)setRefreshType:(TWRefreshType)refreshType {
+    if (_refreshType != refreshType) {
+        _refreshType = refreshType;
+        [self prepareRefresh];
+    }
+}
+
 - (void)prepareRefresh {
-    //self.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
-    
     if((_refreshType & TWRefreshTypeTop) == TWRefreshTypeTop){
         [self setRefreshHeaderWithIndicatorClass:[TWRefreshIndicatorView class]];
     }

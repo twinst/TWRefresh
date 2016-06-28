@@ -113,6 +113,10 @@ static CGFloat TWRefreshFooterViewHeight = 49;
 
 - (void)setIndicator:(id<TWRefreshIndicator>)indicator {
     if(_indicator != indicator) {
+        if (_indicator && [_indicator isKindOfClass:[UIView class]]) {
+            [((UIView *)_indicator) removeFromSuperview];
+            _indicator = nil;
+        }
         _indicator = indicator;
         if ([indicator isKindOfClass:[UIView class]]) {
             [self addSubview:(UIView*)indicator];
