@@ -337,7 +337,16 @@ static CGFloat TWRefreshFooterViewHeight = 49;
 
 - (void)layout {
     CGRect r = self.frame;
-    r.size.height = TWRefreshHeaderViewHeight;
+    CGFloat indicatorHeight = 0;
+    if ([_indicator respondsToSelector:@selector(indicatorHeight)]) {
+        if ([_indicator indicatorHeight] > 0) {
+            indicatorHeight = [_indicator indicatorHeight];
+        }
+    }
+    if (indicatorHeight <= 0) {
+        indicatorHeight = TWRefreshHeaderViewHeight;
+    }
+    r.size.height = indicatorHeight;
     r.origin.y = -r.size.height;
     self.frame = r;
     if (_indicator) {
@@ -443,7 +452,16 @@ static CGFloat TWRefreshFooterViewHeight = 49;
 
 - (void)layout {
     CGRect r = self.frame;
-    r.size.height = TWRefreshFooterViewHeight;
+    CGFloat indicatorHeight = 0;
+    if ([_indicator respondsToSelector:@selector(indicatorHeight)]) {
+        if ([_indicator indicatorHeight] > 0) {
+            indicatorHeight = [_indicator indicatorHeight];
+        }
+    }
+    if (indicatorHeight <= 0) {
+        indicatorHeight = TWRefreshFooterViewHeight;
+    }
+    r.size.height = indicatorHeight;
     r.origin.y = MAX(_scrollView.contentSize.height, _scrollView.frame.size.height-_originalContentInset.top-_originalContentInset.bottom);
     self.frame = r;
     if (_indicator) {

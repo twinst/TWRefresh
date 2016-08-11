@@ -25,6 +25,7 @@
 @protocol TWRefreshIndicator <NSObject>
 
 @optional
+- (CGFloat)indicatorHeight;
 - (void)start;
 - (void)stop;
 - (void)reset;
