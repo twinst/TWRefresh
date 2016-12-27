@@ -34,7 +34,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setMinimumLineSpacing:0];
     [flowLayout setMinimumInteritemSpacing:0];
-    _collectionView = [[TWRefreshCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout refreshType:TWRefreshTypeTop|TWRefreshTypeBottom andAutoLoad:YES];
+    _collectionView = [[TWRefreshCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout refreshType:TWRefreshTypeTop|TWRefreshTypeBottom];
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
