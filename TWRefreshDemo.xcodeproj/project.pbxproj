@@ -234,6 +234,7 @@
 				TargetAttributes = {
 					833238C71B2E6D5F00B806CE = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 77C328S8HC;
 					};
 					833238E01B2E6D6000B806CE = {
 						CreatedOnToolsVersion = 6.3;
@@ -445,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 77C328S8HC;
 				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -457,6 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 77C328S8HC;
 				INFOPLIST_FILE = TWRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
