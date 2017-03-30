@@ -34,7 +34,7 @@
 @property (nonatomic, assign) TWRefreshType refreshType;
 
 // Constructors
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refresyType;
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refreshType;
 
 - (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout refreshType:(TWRefreshType)refreshType;
 

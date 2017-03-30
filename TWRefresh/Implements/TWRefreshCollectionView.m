@@ -28,10 +28,10 @@
     TWRefreshType _refreshType;
 }
 
-- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refresyType {
+- (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refreshType {
     self = [super initWithFrame:frame];
     if (self) {
-        _refreshType = refresyType;
+        _refreshType = refreshType;
         [self prepareRefresh];
     }
     return self;
