@@ -30,7 +30,14 @@ FOUNDATION_EXPORT const unsigned char TWRefreshVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <TWRefresh/PublicHeader.h>
 
-#import <TWRefresh/TWRefreshIndicator.h>
-#import <TWRefresh/TWRefreshIndicatorView.h>
-#import <TWRefresh/TWRefreshTableView.h>
-#import <TWRefresh/TWRefreshCollectionView.h>
+#if __has_include(<TWRefresh/TWRefresh.h>)
+    #import <TWRefresh/TWRefreshIndicator.h>
+    #import <TWRefresh/TWRefreshIndicatorView.h>
+    #import <TWRefresh/TWRefreshTableView.h>
+    #import <TWRefresh/TWRefreshCollectionView.h>
+#else
+    #import "TWRefreshIndicator.h"
+    #import "TWRefreshIndicatorView.h"
+    #import "TWRefreshTableView.h"
+    #import "TWRefreshCollectionView.h"
+#endif
