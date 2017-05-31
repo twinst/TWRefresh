@@ -106,20 +106,26 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
 }
 
 - (void)refreshHeader {
+    BOOL refreshRequired = [self refreshHeaderState] != TWRefreshStateRefreshing;
     if (self.header) {
         [self.header setState:TWRefreshStateRefreshing];
     }
-    if (self.refreshHeaderCallback) {
-        self.refreshHeaderCallback();
+    if (refreshRequired) {
+        if (self.refreshHeaderCallback) {
+            self.refreshHeaderCallback();
+        }
     }
 }
 
 - (void)refreshFooter {
+    BOOL refreshRequired = [self refreshFooterState] != TWRefreshStateRefreshing;
     if (self.footer) {
         [self.footer setState:TWRefreshStateRefreshing];
     }
-    if (self.refreshFooterCallback) {
-        self.refreshFooterCallback();
+    if (refreshRequired) {
+        if (self.refreshFooterCallback) {
+            self.refreshFooterCallback();
+        }
     }
 }
 
@@ -157,6 +163,13 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
     }
 }
 
+- (BOOL)refreshHeaderEnabled {
+    if (self.header && self.header.superview == self) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)setRefreshFooterEnabled:(BOOL)refreshEnabled {
     if (refreshEnabled) {
         if (self.footer && !self.footer.superview) {
@@ -172,6 +185,27 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
             [self.footer removeFromSuperview];
         }
     }
+}
+
+- (BOOL)refreshFooterEnabled {
+    if (self.footer && self.footer.superview == self) {
+        return YES;
+    }
+    return NO;
+}
+
+- (TWRefreshState)refreshHeaderState {
+    if (self.header) {
+        return self.header.state;
+    }
+    return TWRefreshStateUnknown;
+}
+
+- (TWRefreshState)refreshFooterState {
+    if (self.footer) {
+        return self.footer.state;
+    }
+    return TWRefreshStateUnknown;
 }
 
 @end

@@ -24,6 +24,7 @@
 #import "TWRefreshIndicator.h"
 
 typedef NS_ENUM(NSInteger, TWRefreshState) {
+    TWRefreshStateUnknown = -1,
     TWRefreshStateNormal,
     TWRefreshStateReadyToRefresh,
     TWRefreshStateRefreshing,

@@ -56,13 +56,25 @@
 // Set refresh enabled, sometimes you need to switch refreshable state
 - (void)setRefreshHeaderEnabled:(BOOL)refreshEnabled;
 
+// Get state of refresh header enabled
+- (BOOL)refreshHeaderEnabled;
+
 // Set refresh enabled, sometimes you need to switch refreshable state
 - (void)setRefreshFooterEnabled:(BOOL)refreshEnabled;
+
+// Get state of refresh footer enabled
+- (BOOL)refreshFooterEnabled;
 
 // Refresh header callback
 - (void)setRefreshHeaderCallback:(void (^)())refreshHeaderCallback;
 
 // Refresh footer callback
 - (void)setRefreshFooterCallback:(void (^)())refreshFooterCallback;
+
+// Refresh header state
+- (TWRefreshState)refreshHeaderState;
+
+// Refresh footer state
+- (TWRefreshState)refreshFooterState;
 
 @end

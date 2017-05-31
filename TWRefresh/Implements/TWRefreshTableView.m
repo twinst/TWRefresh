@@ -58,16 +58,22 @@
 }
 
 - (void)refreshHeader {
+    BOOL refreshRequired = [self refreshHeaderState] != TWRefreshStateRefreshing;
     [super refreshHeader];
-    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(beginRefreshHeader:)]) {
-        [self.refreshDelegate beginRefreshHeader:self];
+    if (refreshRequired) {
+        if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(beginRefreshHeader:)]) {
+            [self.refreshDelegate beginRefreshHeader:self];
+        }
     }
 }
 
 - (void)refreshFooter {
+    BOOL refreshRequired = [self refreshFooterState] != TWRefreshStateRefreshing;
     [super refreshFooter];
-    if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(beginRefreshFooter:)]) {
-        [self.refreshDelegate beginRefreshFooter:self];
+    if (refreshRequired) {
+        if (self.refreshDelegate && [self.refreshDelegate respondsToSelector:@selector(beginRefreshFooter:)]) {
+            [self.refreshDelegate beginRefreshFooter:self];
+        }
     }
 }
 
