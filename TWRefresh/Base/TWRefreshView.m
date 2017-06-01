@@ -119,7 +119,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
         }
         _indicator = indicator;
         if ([indicator isKindOfClass:[UIView class]]) {
-            [self addSubview:(UIView*)indicator];
+            [self addSubview:(UIView *)indicator];
         }
     }
 }
@@ -226,7 +226,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
     int _flag; // This flag just do .... work around flag
 }
 
-- (void)contentOffsetChanged:(NSDictionary*) change {
+- (void)contentOffsetChanged:(NSDictionary *)change {
     // Call super method
     [super contentOffsetChanged:change];
     
@@ -243,7 +243,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
     if (_scrollView.isDragging) {
         CGFloat ratio = 0;
         BOOL invokeRatio = NO;
-        CGFloat offsetY = contentOffset.y+_originalContentInset.top;
+        CGFloat offsetY = contentOffset.y + _originalContentInset.top;
         if (offsetY<=-self.frame.size.height) {
             _state = TWRefreshStateReadyToRefresh;
         }
@@ -251,7 +251,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
             _state = TWRefreshStateNormal;
         }
         if (offsetY<0) {
-            ratio = MAX(0, MIN(-offsetY/self.frame.size.height, 1.0));
+            ratio = MAX(0, MIN(-offsetY / self.frame.size.height, 1.0));
             invokeRatio = YES;
         }
         if (invokeRatio && [_indicator respondsToSelector:@selector(pullingWithRatio:)]) {
@@ -271,15 +271,15 @@ static CGFloat TWRefreshFooterViewHeight = 49;
     }
     // Fix: A known issue here, when table view with section header, and scroll up, a gap between top and section header
     CGPoint contentOffset = _scrollView.contentOffset;
-    if (contentOffset.y>-_originalContentInset.top-_refreshInsetHeight) {
+    if (contentOffset.y > -_originalContentInset.top - _refreshInsetHeight) {
         UIEdgeInsets inset = _scrollView.contentInset;
-        _refreshInsetHeight = - MIN((contentOffset.y+_originalContentInset.top), 0);
+        _refreshInsetHeight = - MIN((contentOffset.y + _originalContentInset.top), 0);
         inset.top = _originalContentInset.top +_refreshInsetHeight;
         _scrollView.contentInset = inset;
     }
     else {
         UIEdgeInsets inset = _scrollView.contentInset;
-        _refreshInsetHeight = MIN(-(contentOffset.y+_originalContentInset.top), self.frame.size.height);
+        _refreshInsetHeight = MIN(-(contentOffset.y + _originalContentInset.top), self.frame.size.height);
         inset.top = _originalContentInset.top +_refreshInsetHeight;
         _scrollView.contentInset = inset;
     }
@@ -290,12 +290,12 @@ static CGFloat TWRefreshFooterViewHeight = 49;
 }
 
 - (void)contentInsetChanged:(NSDictionary *)change {
-    if (_state!=TWRefreshStateRefreshing) {
+    if (_state != TWRefreshStateRefreshing) {
         _flag = 1;
         _originalContentInset = _scrollView.contentInset;
     }
     else {
-        if (_flag>0) {
+        if (_flag > 0) {
             _flag --;
             _originalContentInset.top = _scrollView.contentInset.top - _refreshInsetHeight;
         }
@@ -307,7 +307,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
     [super contentSizeChanged:change];
 }
 
-- (void) addRefreshContentInset:(BOOL)animated {
+- (void)addRefreshContentInset:(BOOL)animated {
     UIEdgeInsets edgeInset = _scrollView.contentInset;
     edgeInset.top = _refreshInsetHeight + _originalContentInset.top;
     CGFloat duration = animated? 0.25 : 0;
@@ -385,7 +385,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
             _state = TWRefreshStateNormal;
         }
         if (offsetY > beginY) {
-            ratio = MAX(0, MIN((offsetY-beginY)/self.frame.size.height, 1.0));
+            ratio = MAX(0, MIN((offsetY - beginY) / self.frame.size.height, 1.0));
             invokeRatio = YES;
         }
         if (invokeRatio && [_indicator respondsToSelector:@selector(pullingWithRatio:)]) {
@@ -462,7 +462,7 @@ static CGFloat TWRefreshFooterViewHeight = 49;
         indicatorHeight = TWRefreshFooterViewHeight;
     }
     r.size.height = indicatorHeight;
-    r.origin.y = MAX(_scrollView.contentSize.height, _scrollView.frame.size.height-_originalContentInset.top-_originalContentInset.bottom);
+    r.origin.y = MAX(_scrollView.contentSize.height, _scrollView.frame.size.height - _originalContentInset.top - _originalContentInset.bottom);
     self.frame = r;
     if (_indicator) {
         ((UIView *)_indicator).frame = self.bounds;

@@ -42,7 +42,7 @@
 @protocol TWTableViewRefreshingDelegate <NSObject>
 
 @optional
-- (void) beginRefreshHeader:(TWRefreshTableView*) tableView;
-- (void) beginRefreshFooter:(TWRefreshTableView*) tableView;
+- (void)beginRefreshHeader:(TWRefreshTableView *)tableView;
+- (void)beginRefreshFooter:(TWRefreshTableView *)tableView;
 
 @end

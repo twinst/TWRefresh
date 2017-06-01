@@ -36,15 +36,8 @@
     return self;
 }
 
-- (BOOL)isFrameEquals:(CGRect)frame1 to:(CGRect)frame2 {
-    return frame1.origin.x == frame2.origin.x &&
-    frame1.origin.y == frame2.origin.y &&
-    frame1.size.width == frame2.size.width &&
-    frame1.size.height == frame2.size.height;
-}
-
 - (void)setFrame:(CGRect)frame {
-    if (![self isFrameEquals:frame to:self.frame]) {
+    if (!CGRectEqualToRect(frame, self.frame)) {
         [super setFrame:frame];
         [self adjustShapeLayerPath];
     }

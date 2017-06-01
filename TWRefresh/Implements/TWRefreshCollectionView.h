@@ -43,7 +43,7 @@
 @protocol TWCollectionViewRefreshingDelegate <NSObject>
 
 @optional
-- (void) beginRefreshHeader:(TWRefreshCollectionView*) collectionView;
-- (void) beginRefreshFooter:(TWRefreshCollectionView*) collectionView;
+- (void)beginRefreshHeader:(TWRefreshCollectionView *)collectionView;
+- (void)beginRefreshFooter:(TWRefreshCollectionView *)collectionView;
 
 @end
