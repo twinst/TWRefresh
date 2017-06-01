@@ -106,25 +106,25 @@ static const NSString *TWRefreshFooterCallbackKey = @"TWRefreshFooterViewCallbac
 }
 
 - (void)refreshHeader {
-    BOOL refreshRequired = [self refreshHeaderState] != TWRefreshStateRefreshing;
     if (self.header) {
+        BOOL refreshRequired = [self refreshHeaderState] != TWRefreshStateRefreshing;
         [self.header setState:TWRefreshStateRefreshing];
-    }
-    if (refreshRequired) {
-        if (self.refreshHeaderCallback) {
-            self.refreshHeaderCallback();
+        if (refreshRequired) {
+            if (self.refreshHeaderCallback) {
+                self.refreshHeaderCallback();
+            }
         }
     }
 }
 
 - (void)refreshFooter {
-    BOOL refreshRequired = [self refreshFooterState] != TWRefreshStateRefreshing;
     if (self.footer) {
+        BOOL refreshRequired = [self refreshFooterState] != TWRefreshStateRefreshing;
         [self.footer setState:TWRefreshStateRefreshing];
-    }
-    if (refreshRequired) {
-        if (self.refreshFooterCallback) {
-            self.refreshFooterCallback();
+        if (refreshRequired) {
+            if (self.refreshFooterCallback) {
+                self.refreshFooterCallback();
+            }
         }
     }
 }
