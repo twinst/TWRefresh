@@ -28,6 +28,10 @@
     TWRefreshType _refreshType;
 }
 
+- (id)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame refreshType:TWRefreshTypeTop|TWRefreshTypeBottom];
+}
+
 - (id)initWithFrame:(CGRect)frame refreshType:(TWRefreshType)refreshTpye {
     return [self initWithFrame:frame style:UITableViewStylePlain refreshType:refreshTpye];
 }
