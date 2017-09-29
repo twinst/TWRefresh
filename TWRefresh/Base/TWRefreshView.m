@@ -93,6 +93,9 @@ static CGFloat TWRefreshFooterViewHeight = 49;
     r.size.width = newSuperview.frame.size.width;
     self.frame = r;
     
+    //Layout position
+    [self layout];
+    
     // If has super view
     if (self.superview) {
         [self removeObservers];
